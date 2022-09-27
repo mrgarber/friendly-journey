@@ -1,0 +1,139 @@
+package itec220.labs;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+
+
+class TestBSTDefaultContains {
+
+	
+	private  static ArrayList<Integer> defaultNumberList;
+	private  static BSTree<Integer,Integer> defaultNumberTree;
+	private  static BSTree<Integer,Integer> singleTestNumberTree;
+	@BeforeAll
+	public static void setUpAll() {
+		// set of numbers to use for tree
+		// use this type of setup for something you would not break by testing (like find)
+		defaultNumberList = new ArrayList<Integer>(Arrays.asList(50,25,75,15, 5,20, 35,30,45,65,60,70,85,95,80 ) );
+		/**
+		 *Tree inserted in this order should look like:
+		 *                                        50
+		 *                               25                75
+		 *                           15      35        65      85       
+		 *                          5  20  30  45    60  70  80  95          
+		 */
+		defaultNumberTree = new BSTree<Integer,Integer>();
+		defaultNumberList.forEach((a) -> {defaultNumberTree.insert(a, a);});
+	}
+	
+	@BeforeEach
+	public void setUp() {
+		// use this type of setup for something you would break by testing (like delete)
+		// it will be reset for each test
+	
+		/**
+		 *Tree inserted in this order should look like:
+		 *                                        50
+		 *                               25                75
+		 *                           15      35        65      85       
+		 *                          5  20  30  45    60  70  80  95          
+		 */
+		singleTestNumberTree = new BSTree<>();
+		defaultNumberList.forEach((a) -> {singleTestNumberTree.insert(a, a);});
+	}
+	@Test
+	void testFindRoot() {
+		//Arrange
+		boolean result = defaultNumberTree.contains(50);
+		// Act
+		boolean expected = true;
+		// Assert
+		assertSame(expected, result);
+	
+	}
+	
+	
+	@Test
+	void testTrueOne() {
+		//Arrange 
+		boolean result = defaultNumberTree.contains(30);
+		// Act
+		boolean expected = true;
+		// Assert
+		assertSame(expected, result);
+		
+	
+	}
+	@Test
+	void testFalseOne() {
+		//Arrange
+		boolean result = defaultNumberTree.contains(67);
+		// Act
+		boolean expected = false;
+		// Assert
+		assertSame(expected, result);		
+	
+	}
+
+	@Test
+	void testTrueTwo() {
+		//Arrange
+		boolean result = defaultNumberTree.contains(85);
+		// Act
+		boolean expected = true;
+		// Assert
+		assertSame(expected, result);		
+	
+	}
+	@Test
+	void testFalseTwo() {
+		//Arrange
+		boolean result = defaultNumberTree.contains(-23);
+		// Act
+		boolean expected = false;
+		// Assert
+		assertSame(expected, result);		
+	
+	}
+	
+	@Test
+	void testTrueThree() {
+		//Arrange
+		boolean result = defaultNumberTree.contains(65);
+		// Act
+		boolean expected = true;
+		// Assert
+		assertSame(expected, result);		
+	
+	}
+	
+	@Test
+	void testFalseThree() {
+		//Arrange
+		boolean result = defaultNumberTree.contains(234);
+		// Act
+		boolean expected = false;
+		// Assert
+		assertSame(expected, result);
+	}
+	
+	@Test
+	void testIfEmpty() {
+		ArrayList<Integer> temp = new ArrayList<Integer>();
+		//Arrange
+		boolean result = temp.contains(34);
+		// Act
+		boolean expected = false;
+		// Assert
+		assertSame(expected, result);	
+	}
+	
+
+}
