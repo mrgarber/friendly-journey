@@ -51,7 +51,6 @@ public class BSTree <Key extends Comparable<Key>, Value> implements BinarySearch
  
 	@Override
 	public void printTree(Traversal order) {
-	// If only I had a method that got a list of the different traversals...
 		ArrayList<Value> temp = values(order);
 			for(Value item : temp) {
 				System.out.println(item);
